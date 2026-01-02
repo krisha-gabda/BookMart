@@ -1,0 +1,79 @@
+body {
+    background-color: #f6eee3;
+    color: #333232;
+    margin: 0;
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .website-logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.main-page {
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    flex: 2;
+    width: 80%;
+    padding: 20px 0px 0px 20px;
+    margin: 0;
+}
+
+.card {
+    padding: 2em;
+}
+
+.book-list, .genre-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: #333232 #f6eee3;
+
+}
+
+.book-card {
+    min-width: 200px;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.book-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.book-name {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.book-rating {
+    font-size: 1rem;
+    color: #ffb400;
+}
+
+section {
+    margin-bottom: 50px;
+}

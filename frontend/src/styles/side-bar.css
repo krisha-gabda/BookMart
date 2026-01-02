@@ -1,0 +1,26 @@
+.SideBar {
+    background-color: #679289;
+    flex: 1;
+    color: #022B3A;
+    width: 10vw;
+    max-width: 300px;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.SideBar h2 {
+    margin-top: 0;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-menu li {
+    color: #022B3A;
+    padding: 10px;
+    list-style: none;
+}
