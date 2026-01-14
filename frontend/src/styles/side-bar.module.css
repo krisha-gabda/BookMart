@@ -1,9 +1,14 @@
+@media (max-width: 768px) {
+  .SideBar {
+    display: none;
+  }
+}
+
 .SideBar {
     background-color: #679289;
-    flex: 1;
     color: #022B3A;
-    width: 10vw;
-    max-width: 300px;
+    width: 250px;
+    flex-shrink: 0;
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
@@ -14,12 +19,12 @@
     margin-top: 0;
 }
 
-.sidebar-menu {
+.sidebar_menu {
     display: flex;
     flex-direction: column;
 }
 
-.sidebar-menu li {
+.sidebar_menu li {
     color: #022B3A;
     padding: 10px;
     list-style: none;

@@ -14,17 +14,17 @@
     vertical-align: center;
 }
 
-h1 {
+.heading {
     font-family: sans-serif;
 }
 
-.left-section {
+.left_section {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.right-section {
+.right_section {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -49,7 +49,7 @@ h1 {
     font-size: 20px;
 }
 
-.website-logo {
+.website_logo {
     width: 90px;
     height: 90px;
     margin-left: 10px;
@@ -57,10 +57,10 @@ h1 {
     transition: filter 300ms;
 }
 
-.website-logo:hover {
+.website_logo:hover {
     filter: drop-shadow(0 0 2em #646cffaa);
 }
 
-.website-logo.react:hover {
+.website_logo.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
 }

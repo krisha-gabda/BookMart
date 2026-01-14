@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/mainPage.css";
+import styles from "../styles/mainPage.module.css";
 import "../components/navigation-bar";
 
 import BookList from "../components/book-list";
@@ -34,11 +34,11 @@ export default function MainPage() {
     return(
         <>
             <NavBar />
-            <div className="main-page">
+            <div className={styles.main_page}>
                 <SideBar />
-                <div className="content">
+                <div className={styles.content}>
                     <h2>Trending Books</h2>
-                    <section className="book-list">
+                    <section className={styles.book_list}>
                         {books.map((r,i) => (
                             <BookList
                             key = {i}
@@ -50,7 +50,7 @@ export default function MainPage() {
                     </section>
 
                     <h2>Top Genres</h2>
-                    <section className="genre-list">
+                    <section className={styles.genre_list}>
                         {genres.map((r,i) => (
                             <BookList 
                             key = {i}
@@ -66,17 +66,3 @@ export default function MainPage() {
     )
 }
 
-
-// navbar -
-// chat with ai tools
-// cart
-// profile
-//
-
-// sidebar -
-// Dashboard
-// My Purchases (dream)
-// View Carts
-// My Reviews
-// Global Rankings
-// AI Tools
