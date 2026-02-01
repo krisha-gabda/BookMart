@@ -7,8 +7,8 @@ import styles from '../styles/LogInPage.module.css';
 export default function LogIn() {
     return (
         <div className={styles.container}>
-            <h2>Log In</h2>
-            <form>
+            <h2 className={styles.login}>Log In</h2>
+            <form className={styles.login_form}>
                 <div className={styles.input_wrapper}>
                     <CiUser className={styles.icons} />
                     <input type="text" name="username" required placeholder="Username..." />
@@ -21,7 +21,7 @@ export default function LogIn() {
                     <input type="checkbox" className={styles.remember_me_button} value="Remember Me" />
                     <label className={styles.remember_me_label}>Remember Me</label>
                 </div>
-                <button type="submit">Log In</button>
+                <button type="submit" className="submit_button">Log In</button>
                 <p className={styles.forgot_password_link}><a href='/ForgotPassword'>Forgot Password?</a></p>
                 <p className={styles.to_signup}>Do not have an account? <a href='/SignUp'>Sign Up</a></p>
             </form>

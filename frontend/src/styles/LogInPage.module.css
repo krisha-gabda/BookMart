@@ -17,7 +17,7 @@ body {
     position: relative;
 }
 
-h2 {
+.login {
     padding-top: 30px;
     padding-bottom: 20px;
     color: #A5668B;
@@ -26,15 +26,9 @@ h2 {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-form {
+.login_form {
     display: flex;
     flex-direction: column;
-}
-
-label {
-    text-align: left;
-    margin-left: 50px;
-    font-size: 1.3em;
 }
 
 .input_wrapper input {
@@ -46,13 +40,21 @@ label {
 }
 
 button {
-    line-height: 40px;
+    display: block;
+    line-height: normal;
     width: 80%;
-    margin: auto;
+    margin: 0;
     background-color: #679289;
     color: white;
     border: none;
     font-size: 1.2em;
+    transition: transform 0.5s ease;
+    border-radius: 20px;
+}
+
+button:hover {
+    transform: scale(105%);
+    cursor: pointer;
 }
 
 .input_wrapper {
@@ -92,6 +94,7 @@ button {
 .forgot_password_link {
     text-align: right;
     margin-right: 40px;
+    margin-top: 0;
 }
 
 .to_signup {
