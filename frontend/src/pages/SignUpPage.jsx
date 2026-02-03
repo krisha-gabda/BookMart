@@ -7,8 +7,8 @@ import styles from '../styles/SignUpPage.module.css';
 export default function SignUp() {
     return (
         <div className={styles.container}>
-            <h2>Sign Up</h2>
-            <form className="signup-form">
+            <h2 className={styles.signup}>Sign Up</h2>
+            <form className={styles.signup_form}>
                 <div className={styles.input_wrapper}>
                     <CiMail className={styles.icons} />
                     <input type="email" name="email" required placeholder="Email..." />
@@ -25,8 +25,8 @@ export default function SignUp() {
                     <CiLock className={styles.icons} />
                     <input type="password" name="password" placeholder="Confirm Password..." required />
                 </div>
-                <button type="submit">Create Account</button>
-                <p className={styles.to_login}>Already have an account? <a href='/LogIn'>Log In</a></p>
+                <button type="submit" className={styles.submit_button}>Create Account</button>
+                <p className={styles.to_login}>Already have an account? <a className={styles.login_link} href='/LogIn'>Log In</a></p>
             </form>
         </div>
     )

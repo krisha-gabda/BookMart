@@ -7,14 +7,14 @@ import styles from "../styles/ForgotPasswordPage.module.css"
 export default function ForgotPassword() {
     return(
         <div className={styles.container}>
-            <h2>Forgot Password</h2>
-            <form>
+            <h2 className={styles.forgot}>Forgot Password</h2>
+            <form className={styles.forgot_form}>
                 <div className={styles.input_wrapper}>
                     <CiMail className={styles.icons} />
                     <input type="email" name="email" required placeholder="Email..." />
                 </div>
-                <button type="submit">Reset Password</button>
-                <p className={styles.to_login}>Go back to <a href='/LogIn'>Log In Page</a></p>
+                <button type="submit" className={styles.submit_button}>Forgot Password</button>
+                <p className={styles.to_login}>Go back to <a className={styles.login_link} href='/LogIn'>Log In Page</a></p>
             </form>
         </div>
     )

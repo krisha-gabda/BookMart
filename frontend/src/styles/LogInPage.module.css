@@ -39,20 +39,21 @@ body {
     box-sizing: border-box;
 }
 
-button {
+.submit_button {
     display: block;
     line-height: normal;
     width: 80%;
-    margin: 0;
+    margin: 0 auto 6px;
     background-color: #679289;
     color: white;
+    padding: 10px;
     border: none;
     font-size: 1.2em;
     transition: transform 0.5s ease;
     border-radius: 20px;
 }
 
-button:hover {
+.submit_button:hover {
     transform: scale(105%);
     cursor: pointer;
 }
@@ -94,7 +95,8 @@ button:hover {
 .forgot_password_link {
     text-align: right;
     margin-right: 40px;
-    margin-top: 0;
+    display: block;
+    margin-top: 5px;
 }
 
 .to_signup {
@@ -102,15 +104,15 @@ button:hover {
     color: #999;
 }
 
-a {
+.forgot_password_link, .signup_link {
     color: #A5668B;
     text-decoration: none;
 }
 
-a:hover {
+.forgot_password_link:hover, .signup_link:hover {
     color: #679289;
 }
 
-a:active {
+.forgot_password_link:active, .signup_link:active {
     color: #022B3A;
 }

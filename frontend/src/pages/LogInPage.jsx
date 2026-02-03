@@ -21,9 +21,9 @@ export default function LogIn() {
                     <input type="checkbox" className={styles.remember_me_button} value="Remember Me" />
                     <label className={styles.remember_me_label}>Remember Me</label>
                 </div>
-                <button type="submit" className="submit_button">Log In</button>
-                <p className={styles.forgot_password_link}><a href='/ForgotPassword'>Forgot Password?</a></p>
-                <p className={styles.to_signup}>Do not have an account? <a href='/SignUp'>Sign Up</a></p>
+                <button type="submit" className={styles.submit_button}>Log In</button>
+                <a className={styles.forgot_password_link} href='/ForgotPassword'>Forgot Password?</a>
+                <p className={styles.to_signup}>Do not have an account? <a className={styles.signup_link} href='/SignUp'>Sign Up</a></p>
             </form>
         </div>
     )
