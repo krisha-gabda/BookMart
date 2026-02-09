@@ -23,11 +23,11 @@ $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
 $username = $data['username'] ?? null;
-$email    = $data['email'] ?? null;
+$email = $data['email'] ?? null;
 $password = $data['password'] ?? null;
-$confirm  = $data['confirm'] ?? null;
+$confirm = $data['confirm'] ?? null;
 
-if(!$username || !$password || !$email || !$confirm) {
+if(!$username || !$email || !$password || !$confirm) {
     echo json_encode(["status" => "error", "message" => "Please fill all fields"]);
     exit;
 }
