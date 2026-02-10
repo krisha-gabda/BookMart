@@ -76,7 +76,7 @@ export default function LogIn() {
                     <label className={styles.remember_me_label}>Remember Me</label>
                 </div>
                 <button type="submit" className={styles.submit_button}>Log In</button>
-                <a className={styles.forgot_password_link} href='/ForgotPassword'>Forgot Password?</a>
+                <a className={styles.forgot_password_link} href='/forgot'>Forgot Password?</a>
                 <p className={styles.to_signup}>Do not have an account? <a className={styles.signup_link} href='/SignUp'>Sign Up</a></p>
             </form>
         </div>

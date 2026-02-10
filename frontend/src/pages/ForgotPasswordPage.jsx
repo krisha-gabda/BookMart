@@ -66,8 +66,8 @@ export default function ForgotPassword() {
                 <button type="submit" className={styles.submit_button}>Forgot Password</button>
                 <p className={styles.to_login}>Go back to <a className={styles.login_link} href='/LogIn'>Log In Page</a></p>
 
-                <p>Reset Password Link: </p>
-                <a href={resetLink}>{resetLink}</a>
+                {resetLink && <p>Reset Password Link: </p>}
+                {resetLink && <a href={resetLink} className={styles.reset_link}>Click here</a>}
             </form>
         </div>
     )
