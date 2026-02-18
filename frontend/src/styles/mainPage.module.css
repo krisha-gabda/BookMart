@@ -4,6 +4,16 @@ body {
     margin: 0;
 }
 
+.title {
+    font-size: 1.7em;
+    margin-bottom: 0;
+    transition: color 0.5s ease;
+}
+
+.title:hover {
+    color: #A5668B;
+}
+
 .main_page {
     display: flex;
     flex-direction: row;

@@ -44,11 +44,9 @@ export default function MainPage() {
                 <div className={styles.content}>
                     <SearchBook />
                     
-                    <h2>Trending Books</h2>
-
                     {MAIN_PAGE_CATEGORIES.map((cat) => (
                         <section key={cat.key}>
-                            <h2>{cat.title}</h2>
+                            <h2 className={styles.title}>{cat.title}</h2>
 
                             {loading && <p>Loading...</p>}
                             {error[cat.key] && <p>Error: {error[cat.key]}</p>}

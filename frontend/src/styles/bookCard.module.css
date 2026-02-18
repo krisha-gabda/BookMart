@@ -17,6 +17,10 @@
     transform: scale(105%);
 }
 
+.card:first-of-type {
+    margin-left: 20px;
+}
+
 .card_image {
     width: 150px;
     display: block;

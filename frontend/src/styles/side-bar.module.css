@@ -29,3 +29,14 @@
     padding: 10px;
     list-style: none;
 }
+
+.links {
+    color: #022B3A;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.links:hover {
+    color: #A5668B;
+    font-weight: bold;
+}
