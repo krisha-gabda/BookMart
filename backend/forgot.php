@@ -2,26 +2,6 @@
 
 require "db.php";
 
-$allowedOrigins = array_filter([
-    rtrim($env['FRONTEND_URL'] ?? '', '/'),
-    'http://localhost:5173'
-]);
-
-$requestOrigin = rtrim($_SERVER['HTTP_ORIGIN'] ?? '', '/');
-if (in_array($requestOrigin, $allowedOrigins, true)) {
-    header("Access-Control-Allow-Origin: $requestOrigin");
-    header("Vary: Origin");
-}
-
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Credentials: true");
-
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
-}
-
 header("Content-Type: application/json");
 
 $json = file_get_contents('php://input');
