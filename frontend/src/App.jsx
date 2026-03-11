@@ -9,6 +9,7 @@ import ViewCart from './pages/viewCartPage';
 import RankingsPage from './pages/globalRankingsPage';
 import AIAssistant from './pages/AskAIPage';
 import AboutBook from './pages/aboutBook';
+import SearchResults from './pages/searchResults';
 
 export default function App() {
   return(
@@ -23,6 +24,7 @@ export default function App() {
         <Route path='/ViewCart' element={<ViewCart />} />
         <Route path='/Rankings' element={<RankingsPage />} />
         <Route path='/AIAssistant' element={<AIAssistant />} />
+        <Route path='/search' element={<SearchResults />} />
       </Routes>
     </Router>
   )
