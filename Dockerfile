@@ -1,7 +1,7 @@
 # ================================
 # Stage 1: Build React Frontend
 # ================================
-FROM node:18 AS frontend-build
+FROM node:20 AS frontend-build
 WORKDIR /app
 COPY frontend/ .
 RUN npm install
@@ -12,26 +12,26 @@ RUN npm run build
 # ================================
 FROM php:8.2-fpm
 
-# Install Nginx and required PHP extensions for MySQL
+# Install Nginx and required PHP extensions
 RUN apt-get update && apt-get install -y \
     nginx \
     && docker-php-ext-install pdo pdo_mysql mysqli \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy React build output to web root
+# Copy React build output
 COPY --from=frontend-build /app/dist /var/www/html
 
-# Copy PHP backend files
+# Copy PHP backend
 COPY backend/ /var/www/html/api/
 
-# Copy Nginx configuration
+# Copy Nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Set correct permissions
+# Permissions
 RUN chown -R www-data:www-data /var/www/html
 
-# Expose port 80
+# Expose HTTP port
 EXPOSE 80
 
-# Start PHP-FPM and Nginx together
-CMD service php8.2-fpm start && nginx -g "daemon off;"
+# Start PHP-FPM + Nginx
+CMD php-fpm -D && nginx -g "daemon off;"
