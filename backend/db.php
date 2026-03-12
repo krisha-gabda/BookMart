@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "bookmart";
+$host   = getenv('DB_HOST');
+$user   = getenv('DB_USER');
+$pass   = getenv('DB_PASSWORD');
+$dbname = getenv('DB_NAME');
 
 $con = new mysqli($host, $user, $pass, $dbname);
 if ($con->connect_error) {
