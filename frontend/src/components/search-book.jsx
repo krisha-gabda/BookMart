@@ -1,32 +1,40 @@
-import {React, useEffect, useRef, useState} from "react";
+import { React, useEffect, useState, useRef } from "react";
 import { CiSearch } from "react-icons/ci";
 import styles from "../styles/searchBook.module.css";
+import { fetchBooksByQuery } from "../services/googleBooksApi";
 import { useNavigate } from "react-router-dom";
-import { fetchBooksByQuery  } from "../services/googleBooksApi";
 
 export default function SearchBook() {
-
-    const [ query, setQuery ] = useState("");
-    const [ preview, setPreview ] = useState([]);
-    const [ loading, setLoading ] = useState(false);
-    const [ showDropDown, setShowDropDown ] = useState(false);
-    const navigate = useNavigate();
+    const [query, setQuery] = useState("");
+    const [results, setResults] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [loading, setLoading] = useState(false);
     const debounceTimer = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (query.trim().length < 2) {
-            setPreview([]);
-            setShowDropDown(false);
+        if (!query.trim()) {
+            setResults([]);
+            setShowDropdown(false);
             return;
         }
 
+        // debounce — wait 400ms after user stops typing before fetching
         clearTimeout(debounceTimer.current);
         debounceTimer.current = setTimeout(async () => {
             setLoading(true);
-            const results = await fetchBooksByQuery(query, { maxResults: 5 });
-            setPreview(results);
-            setShowDropDown(true);
-            setLoading(false);
+            try {
+                const books = await fetchBooksByQuery(query, { maxResults: 6 });
+                const unique = books.filter((book, index, self) =>
+                    index === self.findIndex((b) => b.id === book.id)
+                );
+                setResults(unique);
+                setShowDropdown(true);
+            } catch {
+                setResults([]);
+            } finally {
+                setLoading(false);
+            }
         }, 400);
 
         return () => clearTimeout(debounceTimer.current);
@@ -34,53 +42,64 @@ export default function SearchBook() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (! query.trim()) return;
-        setShowDropDown(false);
+        if (!query.trim()) return;
+        setShowDropdown(false);
         navigate(`/search?q=${encodeURIComponent(query.trim())}`);
-    };
-
-    const handleChange = async(e) => {
-        setQuery(e.target.value);
     }
 
-    const handleSelectBook = (bookId) => {
-        setShowDropDown(false);
-        navigate(`/book/${bookId}`);
-    };
+    function handleSelect(book) {
+        setShowDropdown(false);
+        setQuery("");
+        navigate(`/aboutBook?id=${book.id}&q=${encodeURIComponent(query)}`);
+    }
 
-    return(
-        <div className={styles.search_container}>
-            <CiSearch className={styles.placeholder_search}/>
-            <form className={styles.search_book} onSubmit={handleSubmit}>
-                <input 
+    return (
+        <div className={styles.search_wrapper}>
+            <div className={styles.search_book}>
+                <CiSearch className={styles.placeholder_search} />
+                <input
                     className={styles.search_bar}
                     type="text"
                     placeholder="Enter book name..."
                     value={query}
-                    onChange={handleChange}
-                    onBlur={() => setTimeout(() => setShowDropDown(false), 150)}
-                    onFocus={() => preview.length > 0 && setShowDropDown(true)}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onFocus={() => results.length > 0 && setShowDropdown(true)}
+                    onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
                 />
-                <button type="submit" className={styles.search_button}><CiSearch /></button>
-            </form>
+                <button type="button" className={styles.search_button} onClick={handleSubmit}>
+                    <CiSearch />
+                </button>
+            </div>
 
-            {showDropDown && (
-                <div className={styles.dropdown}>
-                    {loading && <p>Loading...</p>}
-                    {preview.map((book) => {
-                        return (<div key={book.id} onClick={() => handleSelectBook(book.id)} className={styles.dropdown_item}>
-                            {book.thumbnail && <img src={book.thumbnail} alt={book.title} width={30} />}
-                            <div>
-                                <p>{book.title}</p>
-                                <small>{book.authors}</small>
+            {showDropdown && (
+                <ul className={styles.dropdown}>
+                    {loading && <li className={styles.dropdown_status}>Searching...</li>}
+                    {!loading && results.length === 0 && (
+                        <li className={styles.dropdown_status}>No results found</li>
+                    )}
+                    {!loading && results.map((book) => (
+                        <li
+                            key={book.id}
+                            className={styles.dropdown_item}
+                            onMouseDown={() => handleSelect(book)}
+                        >
+                            {book.image && (
+                                <img
+                                    src={book.image}
+                                    alt={book.name}
+                                    className={styles.dropdown_image}
+                                />
+                            )}
+                            <div className={styles.dropdown_info}>
+                                <span className={styles.dropdown_name}>{book.name}</span>
+                                <span className={styles.dropdown_author}>
+                                    {book.authors?.join(", ") || "Unknown Author"}
+                                </span>
                             </div>
-                        </div>)
-                    })}
-                    <div className="see-all" onClick={() => navigate(`/search?q=${encodeURIComponent(query)}`)}>
-                        See all results for "{query}" →
-                    </div>
-                </div>
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
-    )
+    );
 }

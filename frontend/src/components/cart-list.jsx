@@ -8,7 +8,7 @@ export default function CartList({image, name, price, quantity}) {
             <td className={styles.name}>{name}</td>
             <td className={styles.price}>${price}</td>
             <td className={styles.quantity}>{quantity}</td>{/* Keeping the quantity fixed for now. Update the page so that the user can change the value accordingly */}
-            <td className={styles.total}>{price * quantity}</td>
+            <td className={styles.total}>${price * quantity}</td>
         </tr>
     )
 }

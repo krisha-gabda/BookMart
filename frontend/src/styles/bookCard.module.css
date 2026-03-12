@@ -31,6 +31,10 @@
 }
 
 .card_name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
     color: #022B3A;
     font-size: 1.2em;
     line-height: 1.3;

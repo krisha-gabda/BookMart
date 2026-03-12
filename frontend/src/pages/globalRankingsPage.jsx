@@ -1,6 +1,4 @@
 import React from "react"
-import NavBar from "../components/navigation-bar"
-import SideBar from "../components/side-bar"
 import styles from "../styles/rankingsPage.module.css";
 import RankingGraph from "../components/rankings-graph";
 import RankingList from "../components/ranking-list";
@@ -31,27 +29,23 @@ const data = [
 export default function RankingsPage() {
     return(
         <>
-            <NavBar />
-            <div className={styles.global_rankings}>
-                <SideBar />
-                <div className={styles.content}>
-                    <section className={styles.popularity_graph}>
-                        <h2>Popularity Chart</h2>
-                        <RankingGraph data={data.slice(0,10)}/>
-                    </section>
-                    <h2>Top Books Globally</h2>
-                    <section className={styles.ranking_list}>
-                        {data.slice(0,15).map((r,i) => (
-                            <RankingList
-                            key={i}
-                            name={r.name}
-                            image={r.image}
-                            popularity={r.popularity}
-                            description={r.description}
-                            />
-                        ))}
-                    </section>
-                </div>
+            <div className={styles.content}>
+                <section className={styles.popularity_graph}>
+                    <h2>Popularity Chart</h2>
+                    <RankingGraph data={data.slice(0,10)}/>
+                </section>
+                <h2>Top Books Globally</h2>
+                <section className={styles.ranking_list}>
+                    {data.slice(0,15).map((r,i) => (
+                        <RankingList
+                        key={i}
+                        name={r.name}
+                        image={r.image}
+                        popularity={r.popularity}
+                        description={r.description}
+                        />
+                    ))}
+                </section>
             </div>
         </>
     )

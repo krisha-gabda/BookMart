@@ -1,0 +1,7 @@
+.search_wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-left: 25px;
+}

@@ -10,21 +10,24 @@ import RankingsPage from './pages/globalRankingsPage';
 import AIAssistant from './pages/AskAIPage';
 import AboutBook from './pages/aboutBook';
 import SearchResults from './pages/searchResults';
+import Layout from './components/layout';
 
 export default function App() {
   return(
     <Router>
       <Routes>
-        <Route path='/' element={<MainPage />} />
+        <Route element={<Layout />}>
+          <Route path='/' element={<MainPage />} />
+            <Route path='/aboutBook' element={<AboutBook />} />
+            <Route path='/ViewCart' element={<ViewCart />} />
+            <Route path='/Rankings' element={<RankingsPage />} />
+            <Route path='/AIAssistant' element={<AIAssistant />} />
+            <Route path='/search' element={<SearchResults />} />
+        </Route>
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/forgot' element={<ForgotPassword />} />
         <Route path='/reset' element={<ResetPassword />} />
-        <Route path='/aboutBook' element={<AboutBook />} />
-        <Route path='/ViewCart' element={<ViewCart />} />
-        <Route path='/Rankings' element={<RankingsPage />} />
-        <Route path='/AIAssistant' element={<AIAssistant />} />
-        <Route path='/search' element={<SearchResults />} />
       </Routes>
     </Router>
   )

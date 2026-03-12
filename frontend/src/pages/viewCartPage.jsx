@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/viewCart.module.css";
 
 import CartList from "../components/cart-list";
-import NavBar from "../components/navigation-bar";
-import SideBar from "../components/side-bar";
-
 import { FaCartPlus } from "react-icons/fa";
 
 export default function viewCart() {
@@ -51,40 +48,35 @@ export default function viewCart() {
 
     return(
         <>
-            <NavBar />
-            
-            <div className={styles.view_cart}>
-                <SideBar />
-                <div className={styles.content}>
-                    <FaCartPlus className={styles.cart_icon} />
-                    <h2 className={styles.view_cart_title}> My Cart</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Item</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
+            <div className={styles.content}>
+                <FaCartPlus className={styles.cart_icon} />
+                <h2 className={styles.view_cart_title}> My Cart</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
 
-                        <tbody>
-                            {cartItems.map((r,i) => (
-                                <CartList 
-                                key = {i}
-                                image={r.image}
-                                name = {r.name}
-                                quantity = {r.quantity}
-                                price = {r.price}
-                                />
-                            ))}
-                        </tbody>
-                    </table>
-                    <div className={styles.total}>
-                        <h3 className={styles.total_heading}>Total: ${cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}</h3>
-                        <button className={styles.checkout_btn}>Proceed to Checkout</button>
-                    </div>
+                    <tbody>
+                        {cartItems.map((r,i) => (
+                            <CartList 
+                            key = {i}
+                            image={r.image}
+                            name = {r.name}
+                            quantity = {r.quantity}
+                            price = {r.price}
+                            />
+                        ))}
+                    </tbody>
+                </table>
+                <div className={styles.total}>
+                    <h3 className={styles.total_heading}>Total: ${cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}</h3>
+                    <button className={styles.checkout_btn}>Proceed to Checkout</button>
                 </div>
             </div>
         </>

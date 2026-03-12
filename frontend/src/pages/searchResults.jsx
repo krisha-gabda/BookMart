@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchBooksByQuery  } from "../services/googleBooksApi"; 
 import BookCard from "../components/book-card";
+import styles from "../styles/searchResults.module.css";
 
 const PAGE_SIZE = 20;
 
@@ -45,7 +46,7 @@ export default function SearchResults() {
     <div>
         <h2>Results for "{query}"</h2>
 
-        <div>
+        <div className={styles.search_wrapper}>
         {books.map((book) => (
             <BookCard
                 key={book.id}
