@@ -5,7 +5,7 @@ import styles from "../styles/mainPage.module.css";
 
 export default function Layout() {
     return(
-        <>
+        <div className={styles.page}>
             <NavBar />
             <div className={styles.main_page}>
                 <SideBar />
@@ -13,6 +13,6 @@ export default function Layout() {
                     <Outlet />
                 </div>
             </div>
-        </>
+        </div>
     );
 }

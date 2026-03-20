@@ -14,6 +14,10 @@ body {
     color: #A5668B;
 }
 
+.page {
+    min-height: 100vh;
+}
+
 .main_page {
     display: flex;
     flex-direction: row;

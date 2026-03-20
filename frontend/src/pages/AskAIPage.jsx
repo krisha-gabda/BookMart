@@ -55,7 +55,7 @@ export default function AIAssistant() {
 
     return(
         <div className={styles.AI_page}>
-            <div className={styles.content}>
+            <div className={`${styles.content} ${styles.ai_page_content}`}>
                 {messages.length === 0 && !loading ? (
                     <AIHeroPrompts onPromptClick={sendMessage} />
                 ) : (
