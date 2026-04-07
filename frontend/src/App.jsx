@@ -12,6 +12,7 @@ import AboutBook from './pages/aboutBook';
 import SearchResults from './pages/searchResults';
 import Layout from './components/layout';
 import AddReview from './pages/addReview';
+import CheckoutPage from './pages/checkoutPage';
 
 export default function App() {
   return(
@@ -25,6 +26,7 @@ export default function App() {
             <Route path='/AIAssistant' element={<AIAssistant />} />
             <Route path='/search' element={<SearchResults />} />
             <Route path='/addreview' element={<AddReview />} />
+            <Route path='/checkout' element={<CheckoutPage />} />
         </Route>
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />

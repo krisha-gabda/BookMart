@@ -72,6 +72,9 @@ foreach ($items as $item) {
     ];
 }
 
-echo json_encode($cart_items);
+echo json_encode([
+    "items" => $cart_items,
+    "username" => $_SESSION['user_name']
+]);
 
 ?>

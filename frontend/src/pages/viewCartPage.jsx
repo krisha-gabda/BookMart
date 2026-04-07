@@ -30,7 +30,7 @@ export default function viewCart() {
                     alert("An error occured.");
                     console.log(result.message);
                 } else {
-                    setCartItems(result);
+                    setCartItems(result.items);
                 }
             } catch (err) {
                 alert("An error occured");

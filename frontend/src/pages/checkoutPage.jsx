@@ -1,0 +1,109 @@
+import { useEffect, useState } from "react";
+import styles from "../styles/checkout.module.css";
+import { FaCartPlus } from "react-icons/fa";
+
+export default function CheckoutPage() {
+
+    const [ loading, setLoading ] = useState(true);
+    const [ orderSummary, setOrderSummary ] = useState([]);
+    const [ username, setUsername ] = useState("");
+
+    useEffect(() => {
+        async function getCartSummary() {
+            try {
+                const response = await fetch("http://localhost/bookmart/backend/get_cart.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include"
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to get Cart Summary.");
+                }
+
+                const result = await response.json();
+                if (result.status === "error") {
+                    alert("Something went wrong");
+                    console.log(result.message);
+                } else {
+                    setOrderSummary(result.items);
+                    setUsername(result.username);
+                }
+            } catch (err) {
+                alert("An error occured");
+                console.log(err);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        getCartSummary();
+    }, []);
+
+    if (loading) return <p>Loading...</p>;
+
+    return (
+        <>
+            <div className={styles.content}>
+                <FaCartPlus className={styles.cart_icon} />
+                <h2 className={styles.checkout_title}> Place Order</h2>
+                <div className={styles.page_content}>
+                    <div className={styles.user_details}>
+                        <div className={styles.user_profile}>
+                            <div className={styles.avatar}>{username ? username.slice(0, 2).toUpperCase() : "??"}</div>
+                            <p className={styles.user}>You are ordering as <span>{username}</span>.</p>
+                        </div>
+                        <form>
+                            <label className={styles.name_label}>Full Name</label>
+                            <input className={styles.name_input} type="text" placeholder="Name..." required />
+                            <label className={styles.address_label}>Street Address</label>
+                            <input className={styles.address_input} type="text" placeholder="Address..." required />
+                            <label className={styles.city_label}>City</label>
+                            <input className={styles.city_input} type="text" placeholder="City..." required />
+                            <label className={styles.postcode_label}>Post Code</label>
+                            <input className={styles.postcode_input} type="text" placeholder="Post Code..." required />
+                            <label className={styles.country_label}>Country</label>
+                            <select className={styles.country_input} required >
+                                <option>England</option>
+                                <option>Scotland</option>
+                                <option>Nothern Ireland</option>
+                                <option>Wales</option>
+                            </select>
+                            <button type="submit" className={styles.submit_btn}>Place Order</button>
+                        </form>
+                    </div>
+                    <div className={styles.order_summary}>
+                        <p>Order Summary:</p>
+                        <div className={styles.order_items}>
+                            {orderSummary.map((item) => (
+                                <div key={item.google_volume_id} className={styles.order_item}>
+                                    <img
+                                        src={item.image}
+                                        alt={item.name}
+                                        className={styles.item_image}
+                                    />
+                                    <div className={styles.item_info}>
+                                        <p className={styles.item_name}>{item.name}</p>
+                                        <p className={styles.item_qty}>Qty: {item.quantity}</p>
+                                    </div>
+                                    <p className={styles.item_price}>
+                                        ${(item.price * item.quantity).toFixed(2)}
+                                    </p>
+                                </div>
+                            ))}
+
+                            <div className={styles.order_total}>
+                                <span className={styles.total_label}>Total</span>
+                                <span className={styles.total_price}>
+                                    ${orderSummary.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
