@@ -14,6 +14,7 @@ import Layout from './components/layout';
 import AddReview from './pages/addReview';
 import CheckoutPage from './pages/checkoutPage';
 import ConfirmationPage from './pages/confirmationPage';
+import OrderHistory from './pages/orderHistoryPage';
 
 export default function App() {
   return(
@@ -29,6 +30,7 @@ export default function App() {
             <Route path='/addreview' element={<AddReview />} />
             <Route path='/checkout' element={<CheckoutPage />} />
             <Route path='/confirmation' element={<ConfirmationPage />} />
+            <Route path='/orderHistory' element={<OrderHistory />} />
         </Route>
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />
